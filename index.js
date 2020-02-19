@@ -1,8 +1,10 @@
+
 // Detect Button press
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonHtml = this.innerHTML;
         checkCase(buttonHtml);
+        activeClass(buttonHtml);
         
     });
 }
@@ -11,6 +13,7 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
 document.addEventListener("keydown", function(event){
     var keyPress = event.key
     checkCase(keyPress);
+    activeClass(keyPress);
 
 });
 
@@ -51,3 +54,13 @@ function checkCase(event) {
             break;
     }
 } 
+
+function activeClass(currentKey){
+
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100)
+}
